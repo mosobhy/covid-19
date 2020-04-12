@@ -1,0 +1,267 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+فحص كورونا الذاتي
+
+{% endblock %}
+
+
+{% block main %}
+
+
+<p class="heading">جدول النقاط الاسترشادية لمعرفة أعراض الإصابة بفيروس كورونا المستجد طبقاً لمعايير وزارة الصحة المصرية و منظمة الصحة العالمية
+</p>
+
+    <div class="form-group">
+
+        <div class="row">
+            <div id="current_que">0</div>
+            <div>/</div>
+            <div id="total_que">0</div>
+        </div>
+
+        <div id="load_questions">
+                            
+        </div>
+
+        <div class="col-lg-12 text-center">
+            <!--<input type="button" class="btn btn-warning" value="Previous" onclick="load_previous();">-->
+            <input id="next_button" style="margin-top: 30px;" type="button" class="btn btn-primary" value="Next" onclick="radioValidation();">
+        </div>
+
+    </div>
+
+
+<!-- validating the input fields -->
+<script>
+
+        /* create the ajax request to inject the radio snippets into the above form */
+        function load_total_questions()
+        {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState == 4 &&  xmlhttp.status == 200){
+                    //document.getElementById("total_que").innerHTML = xmlhttp.responseText;
+                    $('#total_que').html(xmlhttp.responseText);
+                }
+            };
+            xmlhttp.open('GET', "/questions/load_total_que", true);
+            xmlhttp.send();
+        }
+
+        var questionno = "1";
+        load_questions(questionno);
+
+        function load_questions(questionno)
+        {
+            document.getElementById("current_que").innerHTML = questionno;
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState == 4 &&  xmlhttp.status == 200){
+                    if(xmlhttp.responseText == "over")
+                    {
+                        window.location = "/before_index";
+                    }
+                    else
+                    {
+                        if(xmlhttp.responseText == "9"){
+                            //document.getElementById("load_questions").innerHTML = xmlhttp.responseText;
+                            document.getElementById("next_button").style.visibility = "hidden";
+                            //$('#load_questions').html(xmlhttp.responseText);
+                            //load_total_questions();
+                        }
+                        else
+                        {
+                            $('#load_questions').html(xmlhttp.responseText);
+                            load_total_questions();
+                        }
+                    }
+                }
+            };
+            xmlhttp.open('GET', "/questions/load_questions/" + questionno, true);
+            xmlhttp.send();
+
+        }
+
+        // radio click function.
+        function radioclick(radiovalue, questionno)
+        {
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function(){
+                if(xmlhttp.readyState == 4 &&  xmlhttp.status == 200){
+                    // we don't need any response here.
+                }
+            };
+            xmlhttp.open('POST', "/self-test/" + radiovalue + "/" + questionno, true);
+            xmlhttp.send();
+
+        }
+
+        /* create the next function */
+        function load_next()
+        {
+            questionno = eval(questionno) + 1;
+            load_questions(questionno);
+
+        }
+
+        /* create the previous function 
+        function load_previous()
+        {
+            if(questionno == "1")
+            {
+                load_questions(questionno);
+            }
+            else{
+                questionno = eval(questionno) - 1;
+                load_questions(questionno);
+            }
+        }
+*/        
+
+        /* form validation function 
+        function radioValidation(){
+
+            var q1 = document.radioform.question1
+            var q1value = false;
+
+            for(var i=0; i<q1.length;i++){
+                if(q1[i].checked){
+                    q1value = true;
+                    break; 
+                }
+            }
+            if(!q1value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+            var q2 = document.radioform.question2
+            var q2value = false;
+
+            for(var i=0; i<q2.length;i++){
+                if(q2[i].checked){
+                    q2value = true;
+                    break; 
+                }
+            }
+            if(!q2value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+
+            var q3 = document.radioform.question3
+            var q3value = false;
+
+            for(var i=0; i<q3.length;i++){
+                if(q3[i].checked){
+                    q3value = true;
+                    break; 
+                }
+            }
+            if(!q3value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+
+            var q4 = document.radioform.question4
+            var q4value = false;
+
+            for(var i=0; i<q4.length;i++){
+                if(q4[i].checked){
+                    q4value = true;
+                    break; 
+                }
+            }
+            if(!q4value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+
+            var q5 = document.radioform.question5
+            var q5value = false;
+
+            for(var i=0; i<q5.length;i++){
+                if(q5[i].checked){
+                    q5value = true;
+                    break; 
+                }
+            }
+            if(!q5value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+
+            var q6 = document.radioform.question6
+            var q6value = false;
+
+            for(var i=0; i<q6.length;i++){
+                if(q6[i].checked){
+                    q6value = true;
+                    break; 
+                }
+            }
+            if(!q6value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+
+
+            var q7 = document.radioform.question7
+            var q7value = false;
+
+            for(var i=0; i<q7.length;i++){
+                if(q7[i].checked){
+                    q7value = true;
+                    break; 
+                }
+            }
+            if(!q7value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+
+
+            var q8 = document.radioform.question8
+            var q8value = false;
+
+            for(var i=0; i<q8.length;i++){
+                if(q8[i].checked){
+                    q8value = true;
+                    break; 
+                }
+            }
+            if(!q8value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+
+
+            var q9 = document.radioform.question9
+            var q9value = false;
+
+            for(var i=0; i<q9.length;i++){
+                if(q9[i].checked){
+                    q9value = true;
+                    break; 
+                }
+            }
+            if(!q9value){
+                alert("لم تجب علي جميع الاسئلة");
+                return false;
+            }
+
+        } 
+*/
+</script>
+
+{% endblock %}

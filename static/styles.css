@@ -1,0 +1,101 @@
+nav, main, footer
+{
+    font-family: El Messiri;
+}
+
+
+nav .navbar-brand
+{
+    padding-right: 16%;
+    font-size: 30px;
+    color: #007bff;
+
+}
+
+
+nav .navbar-text
+{
+    font-size: 18px;
+    font-weight: bold;
+}
+
+main
+{
+    height: 700px;
+    background-color: azure;
+}
+
+main .form-control
+{
+    /* center form controls */
+    display: inline-block;
+
+    /* override Bootstrap's 100% width for form controls */
+    width: auto;
+}
+
+main
+{
+    /* scroll horizontally as needed */
+    overflow-x: auto;
+    overflow-y: inherit;
+    /* center contents */
+    text-align: center;
+}
+
+main .note1
+{
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+main .note2
+{
+    padding-top: 70px;
+    padding-bottom: 20px;
+    color: #007bff;
+}
+
+main .heading
+{
+    font-size: large;
+    font-weight: bold;
+    color: #058dca;
+}
+
+main form .form-group .quetions-divisions
+{
+    padding-top: 30px;
+    text-align: right;
+}
+
+main form .form-group .quetions-divisions .questions-labels
+{
+    margin-left: 30px;
+}
+
+
+main .prevention
+{
+    padding-top: 20px;
+    text-align: right;
+}
+
+main .prevention h4
+{
+    padding-bottom: 15px;
+}
+
+
+main .logout-btn 
+{
+    text-align: right;
+    padding-top: 30px;
+}
+
+
+footer
+{
+    height: 300px;
+    background-color: turquoise;
+}

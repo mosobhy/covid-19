@@ -1,0 +1,51 @@
+
+<div class="quetions-divisions" style="margin-bottom: 40px; margin-top: 50px;">
+    <h5><lable class="questions-labels">{{ data.question }}</lable></h5>
+</div>
+
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">نعم</th>
+        <th scope="col">لا</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">{{ data.id }}</th>
+        <td>
+            <input type="radio" name="{{ data.id }}" value="{{ data.value }}" onclick="radioclick(this.value, this.name)">
+        </td>
+        <td>
+            <input type="radio" name="{{ data.id }}" value="0" onclick="radioclick(this.value, this.name)">
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<script>
+    
+    function radioValidation(){
+        // validate for each question.
+        var q = document.getElementsByName("{{ data.id }}");
+        var qvalue = false;
+
+        for(var i=0; i<q.length;i++){
+            if(q[i].checked){
+                qvalue = true;
+                break; 
+            }
+        }
+        if(!qvalue){
+            alert("قم بالاجابة علي هذا السؤال");
+            return false;
+        }
+
+        // call the load_next function to load the next question from the ajax response.
+        load_next();
+    }
+
+</script>

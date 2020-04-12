@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+تسجيل الدخول
+
+{% endblock %}
+
+
+{% block main %}
+
+<div class="note1">
+    <h5>في حالة إجراء الفحص لأول مرة، يرجي تسيجل بياناتك من 
+    <a href="/register"> هنا </a>حتي يتثني لنا الوصول إليك.
+    </h5>
+</div>
+
+<div class="alert alert-primary" role="alert">
+    <h5>تأكد من إدخال الاسم مطابقَا لبطاقة الرقم القومي</h5>
+</div>
+
+
+<form action="/login" method="POST">
+    <div class="form-group">
+        <input  autofocus class="form-control" name="username" type="text" placeholder="الاسم الثلاثي" required>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" name="ID" type="number" placeholder="الرقم القومي" required>
+    </div>
+
+    <button class="btn btn-primary" type="submit">دخول</button>
+</form>
+
+<div class="precautions-login-page" style="margin-top: 50px;">
+    <h4>- أطلع علي إرشادات الوقاية من<a href="/precautions"> هنا</a></h4>
+    <h4>- أطلع علي آليات العرل السليم من<a href="/quarantine"> هنا</a></h4>
+</div>
+
+<script>
+
+</script>
+
+{% endblock %}

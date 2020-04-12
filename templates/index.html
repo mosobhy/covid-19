@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+Details
+
+{% endblock %}
+
+{% block main %}
+
+<div class="row" style="text-align: right;">
+    <div style="float: right;">
+        <ul>
+            <li>الاسم: {{ row.first_name }} {{ row.second_name }} {{row.last_name }}</li>
+            <li>العنوان: {{ row.address }}</li>
+            <li>رقم المحمول: {{ row.phone_num }}</li>
+            <li>الرقم القومي: {{ row.national_id }}</li>
+            <li>السن: {{ row.age }}</li>
+        </ul>
+    </div>
+</div>
+<br>
+
+<div class="qrcode-text">
+    <div style="text-align: right;">
+        <ol>
+            {% for answer in answer_details %}
+                <li>{{ answer.question }}</li>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <div>
+        <img src="data:image/png;base64,{{ image_as_str }}">
+    </div>
+
+</div>
+
+<div>
+    <a class="btn btn-primary" href="/logout">خروج</a>
+</div>
+
+{% endblock %}

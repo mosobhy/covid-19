@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}
+
+التسجيل
+
+{% endblock %}
+
+
+{% block main %}
+
+<div class="alert alert-primary" role="alert">
+    <h5>تأكد من إدخال الاسم مطابقَا لبطاقة الرقم القومي</h5>
+</div>
+
+<div>
+    <h5 class="note2">قم بتسجيل البيانات التالية:</h5>
+</div>
+
+<form action="/register" method="POST">
+    <div class="form-group">
+        <input class="form-control" name="username" type="text" placeholder="الاسم الثلاثي" required>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" name="address" type="text" placeholder="العنوان" required>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" name="age" type="number" placeholder="العمر" required>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" name="phone" type="number" placeholder="رقم المحمول" required>
+    </div>
+
+    <div class="form-group">
+        <input class="form-control" name="ID" type="number" placeholder="الرقم القومي" required>
+    </div>
+
+    <button class="btn btn-primary" type="submit">التسجيل</button>
+</form>
+
+
+{% endblock %}
