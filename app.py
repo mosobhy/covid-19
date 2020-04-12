@@ -124,10 +124,26 @@ def index():
        \n
     '''
 
-    code = pyqrcode.create(QRdata)
-    image_as_str = code.png_as_base64_str(scale=2)
+    # check the result of the examination to render a suitable QR code.
+    rgb_qr_red = (255,25,52)
+    rgb_qr_green = (37,232,54)
+    rgb_background = (255, 255, 255, 255)
 
-    return render_template("index.html", row=row, answer_details=answer_details, image_as_str=image_as_str)
+    if last_results.result >= 10:
+
+        # create a qr code and pass it the data above.
+        code = pyqrcode.create(QRdata)
+        image_as_str = code.png_as_base64_str(scale=2, module_color=rgb_qr_red, background=rgb_background)
+        
+        return render_template("index.html", row=row, answer_details=answer_details, image_as_str=image_as_str)
+
+    else:
+        code = pyqrcode.create(QRdata)
+        image_as_str = code.png_as_base64_str(scale=2, module_color=rgb_qr_green, background=rgb_background)
+        
+        return render_template("index.html", row=row, answer_details=answer_details, image_as_str=image_as_str)
+
+
 
 
 @app.route("/before_index", methods=["GET"])
