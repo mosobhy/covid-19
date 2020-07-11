@@ -1,0 +1,17 @@
+.parent
+{
+    height: 100% !important;
+    margin-top: 9rem !important;
+}
+.parent h3
+{
+    font-size: 2.1rem;
+    padding-bottom: 1rem;
+    text-transform: capitalize;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.parent img
+{
+    height: 20rem !important;
+    cursor: pointer;
+}
