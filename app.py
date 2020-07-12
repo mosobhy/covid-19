@@ -215,7 +215,7 @@ def self_test():
     print(today_date)
     print(last_date)
     # make the check of the last examin.
-    if (today_date['day'] - last_date['day']) >= 5:
+    if (today_date['day'] - last_date['day']) <= 5:
 
         return render_template('test.html')
 
@@ -373,6 +373,13 @@ def precautions():
 def quarantine():
 
     return render_template("quarantine.html")
+
+
+@app.route("/record", methods = ["GET"])
+@login_required
+def record():
+
+    return render_template("record.html")
 
 def errorhandler(e):
     """Handle error"""
