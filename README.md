@@ -24,4 +24,4 @@ Front-end
 	Javascript
 	AJAX
 # prototype video
-shorturl.at/qsyCE
+shorturl.at/fxAIQ
